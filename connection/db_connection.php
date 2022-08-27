@@ -1,6 +1,6 @@
 <?php
 
-$host = "localhost";
+$host = "sg-nme-web427.main-hosting.eu";
 $user = "u674073926_imran";
 $password = "Uz5*[vo~Z4M~";
 $dbname = "u674073926_semartwoo";
