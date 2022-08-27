@@ -56,11 +56,11 @@ if(isset($_SESSION["admin_id"]) == false){
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="email" name="email" aria-describedby="emailHelp"
-                                                placeholder="Email Address">
+                                                placeholder="Email Address" maxlength="50" required>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" id="password" name="password" class="form-control form-control-user"
-                                                placeholder="Password">
+                                                placeholder="Password" maxlength="16" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -73,12 +73,12 @@ if(isset($_SESSION["admin_id"]) == false){
                                             Login
                                         </button>
                                         <hr>
-                                        <a href="views/auth/dashboard.php" class="btn btn-google btn-user btn-block">
+                                        <!---<a href="views/auth/dashboard.php" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a>
                                         <a href="views/auth/dashboard.php" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
+                                        </a>-->
                                     </form>
                                     <hr>
                                     <div class="text-center">
