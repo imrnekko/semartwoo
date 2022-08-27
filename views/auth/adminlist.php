@@ -82,7 +82,7 @@ if(isset($_SESSION["admin_id"])){
                                         <?php
 
 
-                                        $sql = "SELECT a.fullname, d.name, a.email, a.avatarName from marketim.admin a join marketim.department d on a.department_id =  d.department_id ";
+                                        $sql = "SELECT a.fullname, d.name, a.email, a.avatarName from admin a join department d on a.department_id =  d.department_id ";
                                         $qrydata = mysqli_query($con,$sql);
 
                                         $row = mysqli_num_rows($qrydata);
