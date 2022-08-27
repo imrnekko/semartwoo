@@ -1,9 +1,9 @@
 <?php
 
 $host = "localhost";
-$user = "root";
-$password = "";
-$dbname = "marketim";
+$user = "u674073926_imran";
+$password = "Uz5*[vo~Z4M~";
+$dbname = "u674073926_semartwoo";
 
 $con = mysqli_connect($host,$user,$password,$dbname);
 
