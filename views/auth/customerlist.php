@@ -7,6 +7,10 @@ if(isset($_SESSION["admin_id"])){
 // Get status message
 if(!empty($_GET['status'])){
     switch($_GET['status']){
+        case 'downloaded':
+            $statusType = 'alert-primary';
+            $statusMsg = 'Customer report downloaded.';
+            break;
         case 'succ':
             $statusType = 'alert-success';
             $statusMsg = 'Customer details updated.';
@@ -82,7 +86,7 @@ if(!empty($_GET['status'])){
                     <!-- Display status message -->
                     <?php if(!empty($statusMsg)){ ?>
                     <div class="col-xs-12">
-                        <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
+                        <div class="alert <?php echo $statusType; ?>" id="alertMsg"><?php echo $statusMsg; ?></div>
                     </div>
                     <?php } ?>
 
@@ -234,6 +238,16 @@ if(!empty($_GET['status'])){
     <!-- Scroll to Top -->
     <?php include("../partials/scrolltotop.php"); ?>
     <!-- End of Scroll to Top -->
+
+    <!-- Alert pop-up message -->
+    <script>
+        setTimeout(function(){
+        if ($('#alertMsg').length > 0) {
+            $('#alertMsg').fadeOut();
+        }
+        }, 5000);
+
+    </script>
 
     <script>
 
