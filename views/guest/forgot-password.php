@@ -4,6 +4,24 @@ include("../../connection/db_connection.php");
 
 if(isset($_SESSION["admin_id"]) == false){
 
+    // Get status message
+if(!empty($_GET['status'])){
+    switch($_GET['status']){
+        case 'succ':
+            $statusType = 'alert-success';
+            $statusMsg = 'We have e-mailed your password reset link!';
+            break;
+        case 'err':
+            $statusType = 'alert-danger';
+            $statusMsg = 'The email you entered does not belong to any account, please try again.';
+            break;
+      
+        default:
+            $statusType = '';
+            $statusMsg = '';
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,16 +72,23 @@ if(isset($_SESSION["admin_id"]) == false){
                                         <p class="mb-4">We get it, stuff happens. Just enter your email address below
                                             and we'll send you a link to reset your password!</p>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" method="post" action="../../mail/email-reset-password.php">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="email" name="email" maxlength="30" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                                placeholder="Email Address" required>
                                         </div>
-                                        <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                        <button class="btn btn-primary btn-user btn-block" type="submit" name="submit">
                                             Reset Password
-                                        </a>
+                                        </button>
                                     </form>
+                                    <br>
+                                    <!-- Display status message -->
+                                    <?php if(!empty($statusMsg)){ ?>
+                                    <div class="col-xs-12">
+                                        <div class="alert <?php echo $statusType; ?>" id="alertMsg"><?php echo $statusMsg; ?></div>
+                                    </div>
+                                    <?php } ?>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="register.php">Create an Account!</a>
@@ -82,6 +107,16 @@ if(isset($_SESSION["admin_id"]) == false){
         </div>
 
     </div>
+
+    <!-- Alert pop-up message -->
+    <script>
+        setTimeout(function(){
+        if ($('#alertMsg').length > 0) {
+            $('#alertMsg').fadeOut();
+        }
+        }, 5000);
+
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="../../vendor/jquery/jquery.min.js"></script>
