@@ -52,8 +52,13 @@ if(isset($_POST['export_excel_btn']))
 
         // $writer->save($final_filename);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attactment; filename="'.urlencode($final_filename).'"');
+        header('Content-Disposition: attachment; filename="'.urlencode($final_filename).'"');
         $writer->save('php://output');
+
+        $qstring = "?status=downloaded";
+
+        // Redirect to the listing page
+        header("Location: ../views/auth/customerlist.php".$qstring);
 
     }
     else
@@ -66,7 +71,6 @@ if(isset($_POST['export_excel_btn']))
       
 }
 
-// Redirect to the listing page
-header("Location: ../views/auth/customerlist.php".$qstring);
+
 
 ?>
