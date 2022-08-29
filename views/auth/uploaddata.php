@@ -79,7 +79,7 @@ if(!empty($_GET['status'])){
                 <!-- Display status message -->
                 <?php if(!empty($statusMsg)){ ?>
                 <div class="col-xs-12">
-                    <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
+                    <div class="alert <?php echo $statusType; ?>" id="alertMsg"><?php echo $statusMsg; ?></div>
                 </div>
                 <?php } ?>
 
@@ -126,8 +126,11 @@ if(!empty($_GET['status'])){
                                     <tbody>
                                         <?php
 
+                                        if(isset($_GET['id'])){
 
-                                        $sql = "SELECT c.customer_id,c.name,c.email from customer c";
+                                            
+                                        
+                                        $sql = "SELECT c.customer_id,c.name,c.email,c.upload_id from customer c where c.upload_id = '".$_GET['id']."' ";
                                         $qrydata = mysqli_query($con,$sql);
 
                                         $row = mysqli_num_rows($qrydata);
@@ -156,10 +159,20 @@ if(!empty($_GET['status'])){
                                         }else{ ?>
 
                                             <tr>
-                                            <td colspan="3" align="center">No records</td>
+                                            <td colspan="3" align="center">No records found</td>
                                            
                                             </tr> <?php
                                         } 
+
+                                        }else{
+                                            ?>
+
+                                            <tr>
+                                            <td colspan="3" align="center">No records. Please upload the data first.</td>
+                                           
+                                            </tr> <?php
+
+                                        }
                                         
                                         
                                         ?>
@@ -206,6 +219,16 @@ if(!empty($_GET['status'])){
     <!-- Scroll to Top -->
     <?php include("../partials/scrolltotop.php"); ?>
     <!-- End of Scroll to Top -->
+
+    <!-- Alert pop-up message -->
+    <script>
+        setTimeout(function(){
+        if ($('#alertMsg').length > 0) {
+            $('#alertMsg').fadeOut();
+        }
+        }, 5000);
+
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="../../vendor/jquery/jquery.min.js"></script>
