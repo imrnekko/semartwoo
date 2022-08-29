@@ -17,9 +17,14 @@ if(isset($_POST['import'])){
             
             // Open uploaded CSV file with read-only mode
             $csvFile = fopen($_FILES['file_upload']['tmp_name'], 'r');
-            
+
             // Skip the first line
             fgetcsv($csvFile);
+
+            //insert new upload
+            $uploadQry = mysqli_query($con, "INSERT INTO upload (admin_id, upload_time) VALUES ('".$_SESSION['admin_id']."', NOW())");
+
+            $upload_id = mysqli_insert_id($con);
             
             // Parse data from CSV file line by line
             while(($line = fgetcsv($csvFile)) !== FALSE){
@@ -34,21 +39,20 @@ if(isset($_POST['import'])){
                 
                 if($num_rows > 0){
                     // Update member data in the database
-                    $con->query("UPDATE customer SET name = '".$name."', updated_time = NOW() WHERE email = '".$email."'");
+                    $con->query("UPDATE customer SET name = '".$name."', updated_time = NOW(), upload_id = '".$up_id."' WHERE email = '".$email."'");
                 }else{
                     
                     // Insert member data in the database
-                    $con->query("INSERT INTO customer (name, email, created_time, updated_time) VALUES ('".$name."', '".$email."', NOW(), NOW())");
+                    $con->query("INSERT INTO customer (name, email, created_time, updated_time, upload_id) VALUES ('".$name."', '".$email."', NOW(), NOW(), '".$upload_id."' )");
+              
                 }
             }
             
             // Close opened CSV file
             fclose($csvFile);
 
-            //insert new upload
-            $con->query("INSERT INTO upload (admin_id, upload_time) VALUES ('".$_SESSION['admin_id']."', NOW())");
             
-            $qstring = '?status=succ';
+            $qstring = 'status=succ';
         }else{
             $qstring = '?status=err';
         }
@@ -57,7 +61,7 @@ if(isset($_POST['import'])){
     }
 
     // Redirect to the listing page
-    header("Location: ../views/auth/uploaddata.php".$qstring);
+    header("Location: ../views/auth/uploaddata.php?id=".$upload_id."&".$qstring);
 }
 
 ?>
