@@ -39,7 +39,7 @@ if(isset($_POST['import'])){
                 
                 if($num_rows > 0){
                     // Update member data in the database
-                    $con->query("UPDATE customer SET name = '".$name."', updated_time = NOW(), upload_id = '".$up_id."' WHERE email = '".$email."'");
+                    $con->query("UPDATE customer SET name = '".$name."', updated_time = NOW(), upload_id = '".$upload_id."' WHERE email = '".$email."'");
                 }else{
                     
                     // Insert member data in the database
