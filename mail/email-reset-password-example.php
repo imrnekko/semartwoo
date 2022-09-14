@@ -31,10 +31,10 @@ $mail->SMTPAuth   = SMTP_AUTH;   // enable SMTP authentication
 $mail->SMTPSecure = SMTP_SECURE; // sets the prefix to the servier
 $mail->Host       = HOST;        // sets GMAIL as the SMTP server
 $mail->Port       = PORT;        // set the SMTP port for the GMAIL server
-$mail->Username   = 'ardent.ch13@gmail.com';    // GMAIL username
-$mail->Password   = 'syjscxhojlwznluv';    // GMAIL password
+$mail->Username   = 'hello@gmail.com';    // GMAIL username
+$mail->Password   = 'password';    // GMAIL password
 
-$mail->SetFrom('ardent.ch13@gmail.com', 'SemartWoo');
+$mail->SetFrom('hello@gmail.com', 'SemartWoo');
 $mail->addAddress($r['email'], $r['fullname']);
 $mail->Subject = 'SemartWoo - Reset Password';
 $body = '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">';
