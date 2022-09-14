@@ -1,1 +1,5 @@
 node_modules
+/connection/db_connection.php
+/mail/email-reset-password.php
+/mail/PHPMailer-master/email_config.php
+/mail/phpmailer/email_config.php
