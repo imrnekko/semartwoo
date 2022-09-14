@@ -9,6 +9,6 @@ define("SMTP_DEBUG", 1);
 define("SMTP_AUTH", true);
 define("SMTP_SECURE", "tls");
 define("PORT", 587);
-define("USERNAME", "ardent.ch13@gmail.com");
-define("PASSWORD", "syjscxhojlwznluv");
+define("USERNAME", "hello@gmail.com");
+define("PASSWORD", "password");
 ?>
